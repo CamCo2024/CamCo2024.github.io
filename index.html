@@ -3,9 +3,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Welcome to CamCo!</title>
-    <link href="./images/style.css" rel="stylesheet">
-    <script type="text/javascript" src="./images/jquery.mlens-1.0.min.js"></script>
-    <script type="text/javascript" src="./images/jquery.js"></script>
+    <link href="./style.css" rel="stylesheet">
+    <!-- <script type="text/javascript" src="./images/jquery.mlens-1.0.min.js"></script>
+    <script type="text/javascript" src="./images/jquery.js"></script> -->
     
     <style>
         p.serif {
@@ -73,28 +73,323 @@
                 <span><h1><strong>Image-to-Video Generation</strong></h1></span>
             </div>
              <div class="thick-line1"></div><br><br>
-            <div class="box100", style="text-align:center;">   
-                <span style="font-size: 1.2em;text-align:center;"><strong>Anonymous Author(s)</strong></span><br>
-                <span style="font-size: 1.2em;text-align:center;">Affiliation</span><br>
-                <span style="font-size: 1.2em;text-align:center;">Address</span><br>
-                <span style="font-size: 1.2em;text-align:center;">email</span><br><br>
-            </div> 
         </div>
         
         <div id="">
-            <div class="box100", style="font-size: 1.2em; text-align:center;">
-            <!-- abstract -->
-                <span style="font-size: 1.2em;text-align:center;"><strong>Abstract</strong></span>
-            </div>
-            <div class="box100", style="display:inline-block; font-size: 1.2em; text-align: justify;">
-            <p style="margin-left: 1cm; margin-right:1.0cm;font-weight:bold; text-align:justify;">
-                Recently video diffusion models have emerged as expressive generative tools for high-quality video content creation readily available to general users. However, these models often do not offer precise control over camera poses for video generation, limiting the expression of cinematic language and user control.
-                To address this issue, we introduce <b>CamCo</b>, which allows fine-grained <b>Cam</b>era pose <b>Co</b>ntrol for image-to-video generation.
-                We equip a pre-trained image-to-video generator with accurately parameterized camera pose input using Plücker coordinates. To enhance 3D consistency in the videos produced, we integrate an epipolar attention module in each attention block that enforces epipolar constraints to the feature maps. Additionally, we fine-tune CamCo on real-world videos with camera poses estimated through structure-from-motion algorithms to better synthesize object motion.
-                Our experiments show that CamCo significantly improves 3D consistency and camera control capabilities compared to previous models while effectively generating plausible object motion.
+            <div class="box100", style="display:inline-block; font-size: 1.2em; text-align: center;">
+            <p style="margin-left: 1cm; margin-right:1.0cm;font-weight:bold; text-align: center; font-size: 1.2em;">
+                Contents in this webpage:
             </p>
+            <ul style="margin-left: 2cm; margin-right: 2cm; text-align: center; font-size: 1.2em; line-height: 1.6;">
+                <li>
+                    <a href="#FigA">
+                        Figure A: Comparisons against the concurrent work CameraCtrl
+                    </a>
+                </li>
+                <li><a href="#FigB">Figure B: 3D Reconstruction Results of CamCo's Generated Videos</a></li>
+                <li><a href="#FigC">Figure C: CamCo Evaluated on In-the-wild Images</a></li>
+                <li><a href="#FigD">Figure D: More Dynamic Results and Comparisons</a></li>
+                <li><a href="#FigE">Figure E: Qualitative Comparisons for Ablation Studies</a></li>
+                <li><a href="#FigF">Figure F: Static Generation Comparison (RealEstate-10k)</a></li>
+                <li><a href="#FigG">Figure G: Dynamic Generation Comparison (T2I)</a></li>
+            </ul>
+        
             </div>
         </div>  
+    </div>
+
+    <div class="content">
+        <!-- abstract -->
+        <div id="">
+           <div class="box100", style="line-height:20px;text-align:center;">
+               <span style="font-size: 1.2em;text-align:center;">&nbsp;</span>
+           </div>
+       </div>
+       <div id="">
+           <div class="box100", style="line-height:20px;text-align:center;">
+               <span><h3 id="FigA"><strong>Figure A. Comparisons against the concurrent work CameraCtrl. <br /> Our results showcase outstanding consistency. <br /> CameraCtrl's output contains obvious flickering artifacts and distortions.</strong></h3></span>
+           </div>
+       </div>
+       <div id="">
+            <div class="box33", style="text-align:center;">
+                <div style="line-height:40px; border: 1px solid; text-align:center;">CameraCtrl</div>
+                <!-- <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_motion.gif" style="width:100%;"> -->
+            </div>
+            <div class="box33", style="text-align:center;">
+                <div style="line-height:40px; border: 1px solid; text-align:center;">Ours</div>
+                <!-- <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_out.gif" style="width:100%;"> -->
+            </div>
+            <div class="box33", style="text-align:center;">
+                <div style="line-height:40px; border: 1px solid; text-align:center;">Reference Video</div>
+                <!-- <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_gt.gif" style="width:100%;"> -->
+            </div>
+        </div>
+        <div id="">
+            <div class="box33", style="line-height:20px;text-align:center;">
+                <span><h3><i>A blue chair on a carpet in a living room.                </i></h3></span>
+            </div>
+        </div>
+        <div id="">
+            <!-- <div class="box100", style="line-height:20px;text-align:center;">
+                <span><h3><i>A blue chair on a carpet in a living room.                </i></h3></span>
+            </div> -->
+            <div class="box33", style="text-align:center;">
+                <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">MotionCtrl</div> -->
+                <img class="status3-pic" src="./camco_images/cameractrl/a_blue_chair_on_a_carpet_in_a_living_room.gif" style="width:100%;">
+            </div>
+            <div class="box33", style="text-align:center;">
+                <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">Ours</div> -->
+                <img class="status3-pic" src="./camco_images/cameractrl/11.gif" style="width:100%;">
+            </div>
+            <div class="box33", style="text-align:center;">
+                <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">Reference Video</div> -->
+                <img class="status3-pic" src="./camco_images/cameractrl/11_gt.gif" style="width:100%;">
+            </div>
+        </div>
+        <div id="">
+            <div class="box33", style="line-height:20px;text-align:center;">
+                <span><h3><i>Majestic mountains with an eagle gliding effortlessly through the sky.                </i></h3></span>
+            </div>
+        </div>
+        <div id="">
+            <!-- <div class="box100", style="line-height:20px;text-align:center;">
+                <span><h3><i>A blue chair on a carpet in a living room.                </i></h3></span>
+            </div> -->
+            <div class="box33", style="text-align:center;">
+                <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">MotionCtrl</div> -->
+                <img class="status3-pic" src="./camco_images/cameractrl/Majestic_mountains_with_an_eagle_gliding_effortlessly_through_the_sky.gif" style="width:100%;">
+            </div>
+            <div class="box33", style="text-align:center;">
+                <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">Ours</div> -->
+                <img class="status3-pic" src="./camco_images/cameractrl/12_3.gif" style="width:100%;">
+            </div>
+            <div class="box33", style="text-align:center;">
+                <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">Reference Video</div> -->
+                <img class="status3-pic" src="./camco_images/cameractrl/12_0_gt.gif" style="width:100%;">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="content">
+        <!-- abstract -->
+        <div id="">
+           <div class="box100", style="line-height:20px;text-align:center;">
+               <span style="font-size: 1.2em;text-align:center;">&nbsp;</span>
+           </div>
+       </div>
+       <div id="">
+           <div class="box100", style="line-height:20px;text-align:center;">
+               <span><h3 id="FigB"><strong>Figure B: 3D Reconstruction Results of CamCo's Generated Videos. <br /> We provide novel view renderings of the 3D scenes reconstructed from CamCo's output videos. This 3D-consistency of the video frames is hard to achieve in previous methods.</strong></h3></span>
+           </div>
+       </div>
+       <div id="">
+           <div class="box100", style="line-height:10px;text-align:center;">
+            <span><h3>Generated Videos (Object Centric)</h3></span>
+            <video autoplay muted playsinline loop width="100%">
+                <source src="./camco_images/3drecon/static1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+           </div>
+           <div class="box100", style="line-height:10px;text-align:center;">
+            <span><h3>Reconstructed 3D Scenes (Object Centric)</h3></span>
+            <video autoplay muted playsinline loop width="100%">
+                <source src="./camco_images/3drecon/3d1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+           </div>
+           <div class="box100", style="line-height:10px;text-align:center;">
+            <span><h3>Generated Videos (In-door and Out-door Scenes)</h3></span>
+            <video autoplay muted playsinline loop width="100%">
+                <source src="./camco_images/3drecon/static2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+           </div>
+           <div class="box100", style="line-height:10px;text-align:center;">
+            <span><h3>Reconstructed 3D Scenes (In-door and Out-door Scenes)</h3></span>
+            <video autoplay muted playsinline loop width="100%">
+                <source src="./camco_images/3drecon/3d2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+           </div>
+       </div>
+    </div>
+    <div class="content">
+        <div id="">
+            <div class="box100", style="line-height:20px;text-align:center;">
+                <span style="font-size: 1.2em;text-align:center;">&nbsp;</span>
+            </div>
+        </div>
+        <div id="">
+            <div class="box100", style="line-height:20px;text-align:center;">
+                <span><h3 id="FigC"><strong>Figure C. CamCo Evaluated on In-the-wild Images. <br /> We provide additional results of CamCo evaluated on in-the-wild images.</strong></h3></span>
+            </div>
+        </div>
+        <div id="">
+            <div class="box100", style="line-height:10px;text-align:center;">
+             <!-- <span><h3>Generated Videos (Object Centric)</h3></span> -->
+             <video autoplay muted playsinline loop width="100%">
+                 <source src="./camco_images/inthewild/static.mp4" type="video/mp4">
+                 Your browser does not support the video tag.
+             </video>
+            </div>
+            <div class="box100", style="line-height:10px;text-align:center;">
+             <!-- <span><h3>Generated Videos (Object Centric)</h3></span> -->
+             <video autoplay muted playsinline loop width="100%">
+                 <source src="./camco_images/inthewild/dynamic.mp4" type="video/mp4">
+                 Your browser does not support the video tag.
+             </video>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div id="">
+            <div class="box100", style="line-height:20px;text-align:center;">
+                <span style="font-size: 1.2em;text-align:center;">&nbsp;</span>
+            </div>
+        </div>
+        <div id="">
+            <div class="box100", style="line-height:20px;text-align:center;">
+                <span><h3 id="FigD"><strong>Figure D: More Dynamic Results and Comparisons. <br /> We provide additional dynamic results of CamCo and MotionCtrl. <br /> <i>We invite the reviewers to evaluate comparatively. <br />MotionCtrl tends to produce static results with little-to-no object motion.</i></strong></h3></span>
+            </div>
+        </div>
+        <div id="">
+            <div id="">
+                <div class="box50", style="text-align:center;">
+                    <div style="line-height:40px; border: 1px solid; text-align:center;">MotionCtrl</div>
+                    <!-- <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_motion.gif" style="width:100%;"> -->
+                </div>
+                <div class="box50", style="text-align:center;">
+                    <div style="line-height:40px; border: 1px solid; text-align:center;"><b>Ours</b></div>
+                    <!-- <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_out.gif" style="width:100%;"> -->
+                </div>
+            </div>
+            <div id="">
+                <div class="box50", style="text-align:center;">
+                    <video autoplay muted playsinline loop width="100%">
+                        <source src="./camco_images/dynamic/tmpeicow2r1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <!-- <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_motion.gif" style="width:100%;"> -->
+                </div>
+                <div class="box50", style="text-align:center;">
+                    <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">Ours</div> -->
+                    <img class="status3-pic" src="./camco_images/dynamic/2_19.gif" style="width:100%;">
+                </div>
+            </div>
+            <div id="">
+                <div class="box50", style="text-align:center;">
+                    <video autoplay muted playsinline loop width="100%">
+                        <source src="./camco_images/dynamic/tmplt668u2r.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <!-- <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_motion.gif" style="width:100%;"> -->
+                </div>
+                <div class="box50", style="text-align:center;">
+                    <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">Ours</div> -->
+                    <img class="status3-pic" src="./camco_images/dynamic/0.gif" style="width:100%;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="content">
+        <div id="">
+            <div class="box100", style="line-height:20px;text-align:center;">
+                <span style="font-size: 1.2em;text-align:center;">&nbsp;</span>
+            </div>
+        </div>
+        <div id="">
+            <div class="box100", style="line-height:20px;text-align:center;">
+                <span><h3 id="FigE"><strong>Figure E: Qualitative Comparisons for Ablation Studies. <br /> We provide qualitative comparisons of our ablation study. <br /> <i>We invite the reviewers to evaluate comparatively.</i></strong></h3></span>
+            </div>
+        </div>
+        <div id="">
+            <div id="">
+                <div class="box100", style="line-height:20px;text-align:center;">
+                    <span><h3><b>(a). Effectiveness of our proposed Epipolar Constraint Attention (ECA).</b> <br />Texture of the floor is well-preserved at novel viewpoints when ECA is present.
+                    <br />CameraCtrl's output show severe inconsistency between frames.</h3></span>
+                </div>
+                <div class="box33", style="text-align:center;">
+                    <div style="line-height:40px; border: 1px solid; text-align:center;">CameraCtrl</div>
+                    <!-- <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_motion.gif" style="width:100%;"> -->
+                </div>
+                <div class="box33", style="text-align:center;">
+                    <div style="line-height:40px; border: 1px solid; text-align:center;">Without ECA</div>
+                    <!-- <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_out.gif" style="width:100%;"> -->
+                </div>
+                <div class="box33", style="text-align:center;">
+                    <div style="line-height:40px; border: 1px solid; text-align:center;">With ECA</div>
+                    <!-- <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_out.gif" style="width:100%;"> -->
+                </div>
+            </div>
+            <div id="">
+                <div class="box33", style="line-height:20px;text-align:center;">
+                    <span><h3><i>A view of a living room from an open doorway.</i></h3></span>
+                </div>
+            </div>
+            <div id="">
+                <div class="box33", style="text-align:center;">
+                    <video autoplay muted playsinline loop width="100%">
+                        <source src="./camco_images/ablation/epipolar/a_view_of_a_living_room_from_an_open_doorway.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <!-- <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_motion.gif" style="width:100%;"> -->
+                </div>
+                <div class="box33", style="text-align:center;">
+                    <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">Ours</div> -->
+                    <img class="status3-pic" src="./camco_images/ablation/epipolar/without.gif" style="width:100%;">
+                </div>
+                <div class="box33", style="text-align:center;">
+                    <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">Ours</div> -->
+                    <img class="status3-pic" src="./camco_images/ablation/epipolar/with.gif" style="width:100%;">
+                </div>
+            </div>
+        </div>
+        <div id="">
+            <div id="">
+                <div class="box100", style="line-height:20px;text-align:center;">
+                    <span><h3><b>(b). Effectiveness of our proposed dynamic data curation pipeline.</b> <br />Without the proposed data curation pipeline, camera pose estimates are noisy and the video generator is not able to generate both object motion and camera motion.
+                    <br /> MotionCtrl, in comparison, is only able to generate static scenes (the water is fixed).</h3></span>
+                </div>
+                <div class="box33", style="text-align:center;">
+                    <div style="line-height:40px; border: 1px solid; text-align:center;">MotionCtrl</div>
+                    <!-- <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_motion.gif" style="width:100%;"> -->
+                </div>
+                <div class="box33", style="text-align:center;">
+                    <div style="line-height:40px; border: 1px solid; text-align:center;">Without Curation</div>
+                    <!-- <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_out.gif" style="width:100%;"> -->
+                </div>
+                <div class="box33", style="text-align:center;">
+                    <div style="line-height:40px; border: 1px solid; text-align:center;">With Curation</div>
+                    <!-- <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_out.gif" style="width:100%;"> -->
+                </div>
+            </div>
+            <div id="">
+                <div class="box33", style="line-height:20px;text-align:center;">
+                    <span><h3><i>A view of a living room from an open doorway.</i></h3></span>
+                </div>
+            </div>
+            <div id="">
+                <div class="box33", style="text-align:center;">
+                    <video autoplay muted playsinline loop width="100%">
+                        <source src="./camco_images/ablation/motion/tmppfidji2m.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <!-- <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_motion.gif" style="width:100%;"> -->
+                </div>
+                <div class="box33", style="text-align:center;">
+                    <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">Ours</div> -->
+                    <img class="status3-pic" src="./camco_images/ablation/motion/without.gif" style="width:100%;">
+                </div>
+                <div class="box33", style="text-align:center;">
+                    <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">Ours</div> -->
+                    <img class="status3-pic" src="./camco_images/ablation/motion/with.gif" style="width:100%;">
+                </div>
+            </div>
+        </div>
     </div>
     <div class="content">
         <!-- abstract -->
@@ -105,77 +400,74 @@
        </div>
        <div id="">
            <div class="box100", style="line-height:20px;text-align:center;">
-               <span><h3><strong>Static 3D Generation Comparison (Real-10k)</strong></h3></span>
+               <span><h3 id="#FigF"><strong>Figure F: Static Generation Comparison (RealEstate-10k)</strong></h3></span>
            </div>
        </div>
         <div id="">
             <div class="box25", style="text-align:center;">
                 <div style="line-height:40px; border: 1px solid; text-align:center;">Stable Video Diffusion</div>
-                <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_svd.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_svd.gif" style="width:100%;">
             </div>
             <div class="box25", style="text-align:center;">
                 <div style="line-height:40px; border: 1px solid; text-align:center;">MotionCtrl</div>
-                <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_motion.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_motion.gif" style="width:100%;">
             </div>
             <div class="box25", style="text-align:center;">
                 <div style="line-height:40px; border: 1px solid; text-align:center;">Ours</div>
-                <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_out.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_out.gif" style="width:100%;">
             </div>
             <div class="box25", style="text-align:center;">
                 <div style="line-height:40px; border: 1px solid; text-align:center;">Reference Video</div>
-                <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_gt.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_gt.gif" style="width:100%;">
             </div>
         </div>
         <div id="">
             <div class="box25", style="text-align:center;">
 
-                <img class="status3-pic" src="./camco_images/real10k/000085_3_hhOL7wBuH7I_svd.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/real10k/000085_3_hhOL7wBuH7I_svd.gif" style="width:100%;">
             </div>
             <div class="box25", style="text-align:center;">
-                <img class="status3-pic" src="./camco_images/real10k/000085_3_hhOL7wBuH7I_motion.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/real10k/000085_3_hhOL7wBuH7I_motion.gif" style="width:100%;">
             </div>
             <div class="box25", style="text-align:center;">
-                <img class="status3-pic" src="./camco_images/real10k/000085_3_hhOL7wBuH7I_out.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/real10k/000085_3_hhOL7wBuH7I_out.gif" style="width:100%;">
             </div>
             <div class="box25", style="text-align:center;">
-                <img class="status3-pic" src="./camco_images/real10k/000085_3_hhOL7wBuH7I_gt.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/real10k/000085_3_hhOL7wBuH7I_gt.gif" style="width:100%;">
             </div>
         </div>
         <div id="">
             <div class="box25", style="text-align:center;">
 
-                <img class="status3-pic" src="./camco_images/real10k/000134_3_51-L9Gh-2TU_svd.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/real10k/000134_3_51-L9Gh-2TU_svd.gif" style="width:100%;">
             </div>
             <div class="box25", style="text-align:center;">
-                <img class="status3-pic" src="./camco_images/real10k/000134_3_51-L9Gh-2TU_motion.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/real10k/000134_3_51-L9Gh-2TU_motion.gif" style="width:100%;">
             </div>
             <div class="box25", style="text-align:center;">
-                <img class="status3-pic" src="./camco_images/real10k/000134_3_51-L9Gh-2TU_out.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/real10k/000134_3_51-L9Gh-2TU_out.gif" style="width:100%;">
             </div>
             <div class="box25", style="text-align:center;">
-                <img class="status3-pic" src="./camco_images/real10k/000134_3_51-L9Gh-2TU_gt.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/real10k/000134_3_51-L9Gh-2TU_gt.gif" style="width:100%;">
             </div>
         </div>
         <div id="">
             <div class="box25", style="text-align:center;">
 
-                <img class="status3-pic" src="./camco_images/real10k/000408_9_NBrCSPCE4Tk_svd.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/real10k/000408_9_NBrCSPCE4Tk_svd.gif" style="width:100%;">
             </div>
             <div class="box25", style="text-align:center;">
-                <img class="status3-pic" src="./camco_images/real10k/000408_9_NBrCSPCE4Tk_motion.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/real10k/000408_9_NBrCSPCE4Tk_motion.gif" style="width:100%;">
             </div>
             <div class="box25", style="text-align:center;">
-                <img class="status3-pic" src="./camco_images/real10k/000408_9_NBrCSPCE4Tk_out.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/real10k/000408_9_NBrCSPCE4Tk_out.gif" style="width:100%;">
             </div>
             <div class="box25", style="text-align:center;">
-                <img class="status3-pic" src="./camco_images/real10k/000408_9_NBrCSPCE4Tk_gt.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/real10k/000408_9_NBrCSPCE4Tk_gt.gif" style="width:100%;">
             </div>
         </div>
-
     </div>
-
     <div class="content">
-        <!-- abstract -->
         <div id="">
            <div class="box100", style="line-height:20px;text-align:center;">
                <span style="font-size: 1.2em;text-align:center;">&nbsp;</span>
@@ -183,25 +475,25 @@
        </div>
        <div id="">
            <div class="box100", style="line-height:20px;text-align:center;">
-               <span><h3><strong>Dynamic 3D Generation Comparison (T2I)</strong></h3></span>
+               <span><h3 id="FigG"><strong>Figure G: Dynamic Generation Comparison (T2I)</strong></h3></span>
            </div>
        </div>
        <div id="">
         <div class="box25", style="text-align:center;">
             <div style="line-height:40px; border: 1px solid; text-align:center;">Stable Video Diffusion</div>
-            <!-- <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_svd.gif" style="width:100%; height:30%"> -->
+            <!-- <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_svd.gif" style="width:100%;"> -->
         </div>
         <div class="box25", style="text-align:center;">
             <div style="line-height:40px; border: 1px solid; text-align:center;">MotionCtrl</div>
-            <!-- <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_motion.gif" style="width:100%; height:30%"> -->
+            <!-- <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_motion.gif" style="width:100%;"> -->
         </div>
         <div class="box25", style="text-align:center;">
             <div style="line-height:40px; border: 1px solid; text-align:center;">Ours</div>
-            <!-- <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_out.gif" style="width:100%; height:30%"> -->
+            <!-- <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_out.gif" style="width:100%;"> -->
         </div>
         <div class="box25", style="text-align:center;">
             <div style="line-height:40px; border: 1px solid; text-align:center;">Reference Video</div>
-            <!-- <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_gt.gif" style="width:100%; height:30%"> -->
+            <!-- <img class="status3-pic" src="./camco_images/real10k/000065_5_8DqWEqvDT14_gt.gif" style="width:100%;"> -->
         </div>
         </div>
         <div id="">
@@ -210,19 +502,19 @@
             </div>
             <div class="box25", style="text-align:center;">
                 <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">Stable Video Diffusion</div> -->
-                <img class="status3-pic" src="./camco_images/t2i-dynamic/11_11_svd.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/t2i-dynamic/11_11_svd.gif" style="width:100%;">
             </div>
             <div class="box25", style="text-align:center;">
                 <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">MotionCtrl</div> -->
-                <img class="status3-pic" src="./camco_images/t2i-dynamic/11_11_motion.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/t2i-dynamic/11_11_motion.gif" style="width:100%;">
             </div>
             <div class="box25", style="text-align:center;">
                 <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">Ours</div> -->
-                <img class="status3-pic" src="./camco_images/t2i-dynamic/11_11.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/t2i-dynamic/11_11.gif" style="width:100%;">
             </div>
             <div class="box25", style="text-align:center;">
                 <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">Reference Video</div> -->
-                <img class="status3-pic" src="./camco_images/t2i-dynamic/11_0_gt.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/t2i-dynamic/11_0_gt.gif" style="width:100%;">
             </div>
         </div>
         <div id="">
@@ -231,19 +523,19 @@
             </div>
             <div class="box25", style="text-align:center;">
                 <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">Stable Video Diffusion</div> -->
-                <img class="status3-pic" src="./camco_images/t2i-dynamic/2_13_svd.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/t2i-dynamic/2_13_svd.gif" style="width:100%;">
             </div>
             <div class="box25", style="text-align:center;">
                 <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">MotionCtrl</div> -->
-                <img class="status3-pic" src="./camco_images/t2i-dynamic/2_13_motion.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/t2i-dynamic/2_13_motion.gif" style="width:100%;">
             </div>
             <div class="box25", style="text-align:center;">
                 <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">Ours</div> -->
-                <img class="status3-pic" src="./camco_images/t2i-dynamic/2_13.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/t2i-dynamic/2_13.gif" style="width:100%;">
             </div>
             <div class="box25", style="text-align:center;">
                 <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">Reference Video</div> -->
-                <img class="status3-pic" src="./camco_images/t2i-dynamic/2_0_gt.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/t2i-dynamic/2_0_gt.gif" style="width:100%;">
             </div>
         </div>
         <div id="">
@@ -252,19 +544,19 @@
             </div>
             <div class="box25", style="text-align:center;">
                 <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">Stable Video Diffusion</div> -->
-                <img class="status3-pic" src="./camco_images/t2i-dynamic/3_4_svd.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/t2i-dynamic/3_4_svd.gif" style="width:100%;">
             </div>
             <div class="box25", style="text-align:center;">
                 <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">MotionCtrl</div> -->
-                <img class="status3-pic" src="./camco_images/t2i-dynamic/3_4_motion.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/t2i-dynamic/3_4_motion.gif" style="width:100%;">
             </div>
             <div class="box25", style="text-align:center;">
                 <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">Ours</div> -->
-                <img class="status3-pic" src="./camco_images/t2i-dynamic/3_4.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/t2i-dynamic/3_4.gif" style="width:100%;">
             </div>
             <div class="box25", style="text-align:center;">
                 <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">Reference Video</div> -->
-                <img class="status3-pic" src="./camco_images/t2i-dynamic/3_0_gt.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/t2i-dynamic/3_0_gt.gif" style="width:100%;">
             </div>
         </div>
         <div id="">
@@ -273,39 +565,25 @@
             </div>
             <div class="box25", style="text-align:center;">
                 <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">Stable Video Diffusion</div> -->
-                <img class="status3-pic" src="./camco_images/t2i-dynamic/12_3_svd.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/t2i-dynamic/12_3_svd.gif" style="width:100%;">
             </div>
             <div class="box25", style="text-align:center;">
                 <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">MotionCtrl</div> -->
-                <img class="status3-pic" src="./camco_images/t2i-dynamic/12_3_motion.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/t2i-dynamic/12_3_motion.gif" style="width:100%;">
             </div>
             <div class="box25", style="text-align:center;">
                 <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">Ours</div> -->
-                <img class="status3-pic" src="./camco_images/t2i-dynamic/12_3.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/t2i-dynamic/12_3.gif" style="width:100%;">
             </div>
             <div class="box25", style="text-align:center;">
                 <!-- <div style="line-height:40px; border: 1px solid; text-align:center;">Reference Video</div> -->
-                <img class="status3-pic" src="./camco_images/t2i-dynamic/12_0_gt.gif" style="width:100%; height:30%">
+                <img class="status3-pic" src="./camco_images/t2i-dynamic/12_0_gt.gif" style="width:100%;">
             </div>
         </div>
+    <!-- </div> -->
     </div>
 
-    <div class="content">
-        <div id="">
-            <div class="box100", style="text-align:left;">
-            <p style="text-align:left; font-size: 2em; font-weight: bold" class="serif">BibTeX</p>
-            <code> @misc{**************,<br>
-            &nbsp;&nbsp;title={***************************************************************************},<br>
-            &nbsp;&nbsp;author={***************************************************************************},<br>
-            &nbsp;&nbsp;booktitle={************************************************},<br>
-            &nbsp;&nbsp;year={2024},<br>
-            &nbsp;&nbsp;archivePrefix={***},<br>
-            &nbsp;&nbsp;primaryClass={*.*}<br>
-            }
-            </code>
-            </div>
-        </div>
-    </div>
+
 
 </body>
 
